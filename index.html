@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex,nofollow">
+<title>敵対一覧</title>
+<style type="text/css">
+.dead_class{
+    background-color: #FFBBBB;
+}
+table{
+    border-spacing: 10px;
+}
+</style>
+</head>
+<body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(get_enemy_pt_table());
+function get_enemy_pt_table(){
+	$.ajax({
+		url:"view/view_enemy_pt.php"
+	})
+	.done(function(data){
+		$('#enemy_pt_table').html(data);
+	});
+}
+$(document).on("click",".pt_check_class",function()
+{
+                $.ajax({
+                    url:'api/set_dead_flag.php',
+                    type:'POST',
+                    data:{
+                        'id':$(this).data("enemy-id")
+                    }
+                })
+                .done(function(data){
+			get_enemy_pt_table();
+                })
+});
+</script>
+<h1>沿道でPTに所属している敵対一覧</h1>
+<div id="enemy_pt_table">
+</div>
+</table>
+</body>
+</html>
