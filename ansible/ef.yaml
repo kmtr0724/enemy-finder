@@ -1,0 +1,5 @@
+- hosts: front
+  vars:
+  tasks:
+  - name: コンテントの配置
+    copy: src=../content dest=/home/ryu/
