@@ -1,4 +1,5 @@
 - hosts: front
+   remote_user: ansible
   vars:
   tasks:
   - name: コンテントの配置
