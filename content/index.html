@@ -9,7 +9,11 @@
     background-color: #FFBBBB;
 }
 table{
-    border-spacing: 10px;
+    border-collapse: collapse;
+}
+.alert_class{
+    font-weight: bold;
+    color: #FF0000;
 }
 </style>
 </head>
@@ -39,7 +43,6 @@ $(document).on("click",".pt_check_class",function()
                 })
 });
 </script>
-<h1>沿道でPTに所属している敵対一覧</h1>
 <div id="enemy_pt_table">
 </div>
 </table>

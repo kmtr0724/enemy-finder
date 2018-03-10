@@ -3,4 +3,6 @@
   vars:
   tasks:
   - name: コンテントの配置
-    copy: src=../content dest=/home/ryu/
+    copy: src=../content/ dest=/home/ansible/test/
+  - name: iniの配置
+    copy: src=../ini/ef_value.ini dest=/home/ansible/test2/
