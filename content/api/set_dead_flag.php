@@ -1,5 +1,4 @@
 <?php
-aa
 $ini_array = parse_ini_file("/var/www/ini/ef_value.ini");
 
 $DB_HOST = $ini_array['DB_HOST'];
