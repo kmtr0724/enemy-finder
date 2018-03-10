@@ -1,8 +1,8 @@
 - hosts: front
   remote_user: ansible
-  vars:
+  become: yes
   tasks:
   - name: コンテントの配置
-    copy: src=../content/ dest=/home/ansible/test/
+    copy: src=../content/ dest=/var/www/html/enemy-finder/
   - name: iniの配置
-    copy: src=../ini/ef_value.ini dest=/home/ansible/test2/
+    copy: src=/tmp/ef/ef_value.ini dest=/var/www/ini/ef_value.ini
