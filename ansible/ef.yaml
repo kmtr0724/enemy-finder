@@ -5,4 +5,4 @@
   - name: コンテントの配置
     copy: src=../content/ dest=/var/www/html/enemy-finder/
   - name: iniの配置(vault)
-    copy: src=../ini/ef_value.ini dest=/tmp/et.ini
+    copy: src=../ini/ef_value.ini dest=/var/www/ini/ef_value.ini
