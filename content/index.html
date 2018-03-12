@@ -20,10 +20,11 @@ table{
 <body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-$(document).ready(get_enemy_pt_table());
-function get_enemy_pt_table(){
+var g_show_all_flag = 0
+$(document).ready(get_enemy_pt_table(g_show_all_flag));
+function get_enemy_pt_table(show_all_flag){
 	$.ajax({
-		url:"view/view_enemy_pt.php"
+		url:"view/view_enemy_pt.php?showall="+show_all_flag
 	})
 	.done(function(data){
 		$('#enemy_pt_table').html(data);
@@ -39,12 +40,26 @@ $(document).on("click",".pt_check_class",function()
                     }
                 })
                 .done(function(data){
-			get_enemy_pt_table();
+			get_enemy_pt_table(g_show_all_flag);
                 })
 });
+$(document).on("click","#showallbtn",function()
+{
+	if(g_show_all_flag==1){
+		g_show_all_flag=0
+		$('#showallbtn').text("全表示");
+	} else {
+		g_show_all_flag=1
+		$('#showallbtn').text("隠す");
+	}
+	get_enemy_pt_table(g_show_all_flag);
+});
+
 </script>
 <div id="enemy_pt_table">
 </div>
+<hr>
+<button id="showallbtn">全表示</button>
 </table>
 </body>
 </html>

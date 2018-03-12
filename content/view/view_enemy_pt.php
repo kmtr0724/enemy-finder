@@ -9,18 +9,36 @@ $EXCLUDE_CLAN = $ini_array['EXCLUDE_CLAN'];
 
 $options =array();// array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET CHARACTER SET 'utf8'");
 
+$showall = 0;
+if(isset($_GET['showall'])){
+	$showall=$_GET['showall'];
+}
+
+
 $dbh = new PDO('mysql:host='.$DB_HOST.';dbname='.$DB_NAME, $DB_USER, $DB_PASSWORD, $options);
-$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) ORDER BY  mtime DESC;");
-$stmt->bindparam(":exc",$EXCLUDE_CLAN);
-$stmt->execute();
+if($showall == 1){
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) ORDER BY  mtime DESC;");
+	$stmt->execute();
 
-$result = $stmt->fetchall(PDO::FETCH_ASSOC);
+	$result = $stmt->fetchall(PDO::FETCH_ASSOC);
 
+	
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE is_ptl=1 AND mtime > (now() - INTERVAL 90 minute ) ORDER BY  mtime DESC;");
+	$stmt->execute();
+	$result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
+} else {
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) ORDER BY  mtime DESC;");
+	$stmt->bindparam(":exc",$EXCLUDE_CLAN);
+	$stmt->execute();
 
-$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=1 AND mtime > (now() - INTERVAL 90 minute ) ORDER BY  mtime DESC;");
-$stmt->bindparam(":exc",$EXCLUDE_CLAN);
-$stmt->execute();
-$result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
+	$result = $stmt->fetchall(PDO::FETCH_ASSOC);
+
+	
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=1 AND mtime > (now() - INTERVAL 90 minute ) ORDER BY  mtime DESC;");
+	$stmt->bindparam(":exc",$EXCLUDE_CLAN);
+	$stmt->execute();
+	$result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
+}
 
 
 $class="";
