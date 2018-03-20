@@ -46,18 +46,19 @@ $class="";
 ?>
 <h1>沿道でPTに所属している敵対一覧</h1>
 <table>
-<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>確認時刻</th><th>チャンネル滞在時間(分)</th><th>死亡時刻</th></tr>
+<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>チャンネル滞在時間(分)</th><th>死亡時刻</th></tr>
 <?php foreach($result as $line):?>
 <?php $class = $line['dead_time']=="" ? "": "dead_class";?>
 <tr class=<?php echo"\"$class\""?>>
-<td><button type="button" class="pt_check_class" data-enemy-id=<?php echo $line['ID']?>>済</button></td>
+<td class="nopadding"><button type="button" class="pt_check_class" data-enemy-id=<?php echo $line['ID']?>>済</button></td>
 <td><?php echo $line['clan_name']?></td>
 <td><?php echo $line['chara_name']?></td>
 <td align="center"><?php echo $line['channel']?></td>
 <td align="center" <?php if($line['level']<171) echo "class=\"alert_class\""?>><?php echo $line['level']?></td>
-<td><?php echo $line['mtime']?></td>
+<td align="center"><?php echo number_format($line['power'])?></td>
+<td><?php echo date("m/d H:i:s",strtotime($line['mtime']))?></td>
 <td align="center"><?php echo round((strtotime($line['mtime'])-strtotime($line['ptime']))/60,0) ?></td>
-<td><?php echo $line['dead_time']?></td>
+<td><?php if($line['dead_time']!="")echo date("m/d H:i:s",strtotime($line['dead_time']))?></td>
 <?php endforeach?>
 </table>
 
@@ -65,17 +66,18 @@ $class="";
 
 <h1>沿道でPTに所属していない敵対一覧</h1>
 <table>
-<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>確認時刻</th><th>チャンネル滞在時間(分)</th><th>死亡時刻</th></tr>
+<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>チャンネル滞在時間(分)</th><th>死亡時刻</th></tr>
 <?php foreach($result2 as $line):?>
 <?php $class = $line['dead_time']=="" ? "": "dead_class";?>
 <tr class=<?php echo"\"$class\""?>>
-<td><button type="button" class="pt_check_class" data-enemy-id=<?php echo $line['ID']?>>済</button></td>
+<td class="nopadding"><button type="button" class="pt_check_class" data-enemy-id=<?php echo $line['ID']?>>済</button></td>
 <td><?php echo $line['clan_name']?></td>
 <td><?php echo $line['chara_name']?></td>
 <td align="center"><?php echo $line['channel']?></td>
 <td align="center" <?php if($line['level']<171) echo "class=\"alert_class\""?>><?php echo $line['level']?></td>
-<td><?php echo $line['mtime']?></td>
+<td align="center"><?php echo number_format($line['power'])?></td>
+<td><?php echo date("m/d H:i:s",strtotime($line['mtime']))?></td>
 <td align="center"><?php echo round((strtotime($line['mtime'])-strtotime($line['ptime']))/60,0) ?></td>
-<td><?php echo $line['dead_time']?></td>
+<td><?php if($line['dead_time']!="")echo date("m/d H:i:s",strtotime($line['dead_time']))?></td>
 <?php endforeach?>
 </table>
