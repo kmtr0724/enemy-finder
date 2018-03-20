@@ -57,7 +57,7 @@ $class="";
 <td align="center" <?php if($line['level']<171) echo "class=\"alert_class\""?>><?php echo $line['level']?></td>
 <td align="center"><?php echo number_format($line['power'])?></td>
 <td><?php echo date("m/d H:i:s",strtotime($line['mtime']))?></td>
-<td align="center"><?php echo round((strtotime($line['mtime'])-strtotime($line['ptime']))/60,0) ?></td>
+<td align="right"><?php echo round((strtotime($line['mtime'])-strtotime($line['ptime']))/60,0) ?></td>
 <td><?php if($line['dead_time']!="")echo date("m/d H:i:s",strtotime($line['dead_time']))?></td>
 <?php endforeach?>
 </table>
@@ -75,7 +75,7 @@ $class="";
 <td><?php echo $line['chara_name']?></td>
 <td align="center"><?php echo $line['channel']?></td>
 <td align="center" <?php if($line['level']<171) echo "class=\"alert_class\""?>><?php echo $line['level']?></td>
-<td align="center"><?php echo number_format($line['power'])?></td>
+<td align="right"><?php echo number_format($line['power'])?></td>
 <td><?php echo date("m/d H:i:s",strtotime($line['mtime']))?></td>
 <td align="center"><?php echo round((strtotime($line['mtime'])-strtotime($line['ptime']))/60,0) ?></td>
 <td><?php if($line['dead_time']!="")echo date("m/d H:i:s",strtotime($line['dead_time']))?></td>
