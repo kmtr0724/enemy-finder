@@ -26,8 +26,10 @@ $result = $stmt->fetchall(PDO::FETCH_ASSOC);
 <table>
 <tr><th>name</th><th>mtime</th></tr>
 <?php foreach($result as $line):?>
+<tr>
 <td><?php echo $line['sensor_name']?></td>
 <td><?php echo date("m/d H:i:s",strtotime($line['mtime']))?></td>
+</tr>
 <?php endforeach?>
 </table>
 </body>
