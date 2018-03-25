@@ -17,6 +17,7 @@ $chara_name = htmlspecialchars($_POST['chara_name']);
 $channel = htmlspecialchars($_POST['channel']);
 $power = htmlspecialchars($_POST['power']);
 $level = htmlspecialchars($_POST['level']);
+$ident = htmlspecialchars($_POST['ident']);
 
 $pt_type = "ptm";
 
@@ -28,6 +29,10 @@ if ($pt_type == "ptl") {
 	$is_ptl = 1;
 } else {
   	$is_ptl = 0;
+}
+
+if ($ident == "") {
+	$ident = "unknown";
 }
 
 
@@ -68,6 +73,10 @@ if (is_array($result)) {
         $stmt->bindparam(":ptl",$is_ptl);
 }
 
+$stmt->execute();
+
+$stmt = $dbh->prepare("INSERT INTO sensor_status(sensor_name,mtime) VALUES(:sn,now()) ON DUPLICATE KEY UPDATE mtime=now()");
+$stmt->bindparam(":sn",$ident);
 $stmt->execute();
 
 
