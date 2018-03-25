@@ -46,7 +46,7 @@ $class="";
 ?>
 <h1>沿道でPTに所属している敵対一覧</h1>
 <table>
-<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>チャンネル滞在時間(分)</th><th>死亡時刻</th></tr>
+<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>滞在(分)</th><th>死亡時刻</th><th>コメント</th></tr>
 <?php foreach($result as $line):?>
 <?php $class = $line['dead_time']=="" ? "": "dead_class";?>
 <tr class=<?php echo"\"$class\""?>>
@@ -59,6 +59,7 @@ $class="";
 <td><?php echo date("m/d H:i:s",strtotime($line['mtime']))?></td>
 <td align="center"><?php echo round((strtotime($line['mtime'])-strtotime($line['ptime']))/60,0) ?></td>
 <td><?php if($line['dead_time']!="")echo date("m/d H:i:s",strtotime($line['dead_time']))?></td>
+<td><input type="text" class="comment_class" maxlength=16 data-enemy-id=<?php echo $line['ID']?> value="<?php echo $line['comment']?>"></td>
 <?php endforeach?>
 </table>
 
@@ -66,7 +67,7 @@ $class="";
 
 <h1>沿道でPTに所属していない敵対一覧</h1>
 <table>
-<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>チャンネル滞在時間(分)</th><th>死亡時刻</th></tr>
+<tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>チャンネル</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>滞在(分)</th><th>死亡時刻</th><th>コメント</th></tr>
 <?php foreach($result2 as $line):?>
 <?php $class = $line['dead_time']=="" ? "": "dead_class";?>
 <tr class=<?php echo"\"$class\""?>>
@@ -79,5 +80,6 @@ $class="";
 <td><?php echo date("m/d H:i:s",strtotime($line['mtime']))?></td>
 <td align="center"><?php echo round((strtotime($line['mtime'])-strtotime($line['ptime']))/60,0) ?></td>
 <td><?php if($line['dead_time']!="")echo date("m/d H:i:s",strtotime($line['dead_time']))?></td>
+<td><input type="text" class="comment_class" maxlength=16 data-enemy-id=<?php echo $line['ID']?> value="<?php echo $line['comment']?>"></td>
 <?php endforeach?>
 </table>

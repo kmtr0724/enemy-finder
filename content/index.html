@@ -18,10 +18,17 @@ table{
 }
 
 td{
-    padding: 2px 4px;
+    padding: 2px 3px;
 }
 td.nopadding{
     padding: 2px 0px;
+}
+.comment_class{
+    border:0;
+    font-family:Arial, sans-serif;
+    font-size: 60%;
+    border:solid 1px #ccc;
+    width:160px;
 }
 </style>
 </head>
@@ -63,6 +70,19 @@ $(document).on("click","#showallbtn",function()
 	get_enemy_pt_table(g_show_all_flag);
 });
 
+$(document).on("change",".comment_class",function()
+{
+                $.ajax({
+                    url:'api/set_comment.php',
+                    type:'POST',
+                    data:{
+                        'id':$(this).data("enemy-id"),
+                        'comment':$(this).val()
+                    }
+                })
+                .done(function(data){
+                })
+});
 </script>
 <div id="enemy_pt_table">
 </div>
