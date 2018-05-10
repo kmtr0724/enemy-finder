@@ -48,7 +48,7 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $stmt=null;
 if (is_array($result)) {
         if($result['channel'] != $channel) {
-                $stmt = $dbh->prepare("UPDATE enemy_party SET channel=:ch, power=:pw, level=:lv, is_ptl=:ptl,mtime=now() ,ptime=now(), dead_time=NULL ident=:sn WHERE clan_name=:cln AND chara_name=:cn");
+                $stmt = $dbh->prepare("UPDATE enemy_party SET channel=:ch, power=:pw, level=:lv, is_ptl=:ptl,mtime=now() ,ptime=now(), dead_time=NULL, ident=:sn WHERE clan_name=:cln AND chara_name=:cn");
                 $stmt->bindparam(":cln",$clan_name);
                 $stmt->bindparam(":cn",$chara_name);
                 $stmt->bindparam(":ch",$channel);
@@ -57,7 +57,7 @@ if (is_array($result)) {
                 $stmt->bindparam(":ptl",$is_ptl);
 		$stmt->bindparam(":sn",$ident);
         } else {
-                $stmt = $dbh->prepare("UPDATE enemy_party SET mtime=now(),power=:pw, level=:lv, is_ptl=:ptl ident=:sn WHERE clan_name=:cln AND chara_name=:cn");
+                $stmt = $dbh->prepare("UPDATE enemy_party SET mtime=now(),power=:pw, level=:lv, is_ptl=:ptl, ident=:sn WHERE clan_name=:cln AND chara_name=:cn");
                 $stmt->bindparam(":cln",$clan_name);
                 $stmt->bindparam(":cn",$chara_name);
                 $stmt->bindparam(":pw",$power);
