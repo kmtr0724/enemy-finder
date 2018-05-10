@@ -48,29 +48,32 @@ $result = $stmt->fetch(PDO::FETCH_ASSOC);
 $stmt=null;
 if (is_array($result)) {
         if($result['channel'] != $channel) {
-                $stmt = $dbh->prepare("UPDATE enemy_party SET channel=:ch, power=:pw, level=:lv, is_ptl=:ptl,mtime=now() ,ptime=now(), dead_time=NULL WHERE clan_name=:cln AND chara_name=:cn");
+                $stmt = $dbh->prepare("UPDATE enemy_party SET channel=:ch, power=:pw, level=:lv, is_ptl=:ptl,mtime=now() ,ptime=now(), dead_time=NULL ident=:sn WHERE clan_name=:cln AND chara_name=:cn");
                 $stmt->bindparam(":cln",$clan_name);
                 $stmt->bindparam(":cn",$chara_name);
                 $stmt->bindparam(":ch",$channel);
                 $stmt->bindparam(":pw",$power);
                 $stmt->bindparam(":lv",$level);
                 $stmt->bindparam(":ptl",$is_ptl);
+		$stmt->bindparam(":sn",$ident);
         } else {
-                $stmt = $dbh->prepare("UPDATE enemy_party SET mtime=now(),power=:pw, level=:lv, is_ptl=:ptl WHERE clan_name=:cln AND chara_name=:cn");
+                $stmt = $dbh->prepare("UPDATE enemy_party SET mtime=now(),power=:pw, level=:lv, is_ptl=:ptl ident=:sn WHERE clan_name=:cln AND chara_name=:cn");
                 $stmt->bindparam(":cln",$clan_name);
                 $stmt->bindparam(":cn",$chara_name);
                 $stmt->bindparam(":pw",$power);
                 $stmt->bindparam(":lv",$level);
                 $stmt->bindparam(":ptl",$is_ptl);
+		$stmt->bindparam(":sn",$ident);
         }
 } else {
-        $stmt = $dbh->prepare("INSERT INTO enemy_party(clan_name,chara_name,channel,power,level,is_ptl,ctime,mtime,ptime) VALUES(:cln,:cn,:ch,:pw,:lv,:ptl,now(),now(),now())");
+        $stmt = $dbh->prepare("INSERT INTO enemy_party(clan_name,chara_name,channel,power,level,is_ptl,ctime,mtime,ptime,ident) VALUES(:cln,:cn,:ch,:pw,:lv,:ptl,now(),now(),now()),:sn");
         $stmt->bindparam(":cln",$clan_name);
         $stmt->bindparam(":cn",$chara_name);
         $stmt->bindparam(":ch",$channel);
         $stmt->bindparam(":pw",$power);
         $stmt->bindparam(":lv",$level);
         $stmt->bindparam(":ptl",$is_ptl);
+	$stmt->bindparam(":sn",$ident);
 }
 
 $stmt->execute();
