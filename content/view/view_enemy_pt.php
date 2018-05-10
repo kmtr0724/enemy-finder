@@ -99,6 +99,8 @@ $class="";
 <?php endforeach?>
 </table>
 
+<hr>
+
 <h1>時が止まった地でPTに所属している敵対一覧</h1>
 <table>
 <tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>ch</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>滞在(分)</th><th>死亡時刻</th><th>コメント</th></tr>
