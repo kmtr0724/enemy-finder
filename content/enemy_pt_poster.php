@@ -66,7 +66,7 @@ if (is_array($result)) {
 		$stmt->bindparam(":sn",$ident);
         }
 } else {
-        $stmt = $dbh->prepare("INSERT INTO enemy_party(clan_name,chara_name,channel,power,level,is_ptl,ctime,mtime,ptime,ident) VALUES(:cln,:cn,:ch,:pw,:lv,:ptl,now(),now(),now()),:sn");
+        $stmt = $dbh->prepare("INSERT INTO enemy_party(clan_name,chara_name,channel,power,level,is_ptl,ctime,mtime,ptime,ident) VALUES(:cln,:cn,:ch,:pw,:lv,:ptl,now(),now(),now(),:sn)");
         $stmt->bindparam(":cln",$clan_name);
         $stmt->bindparam(":cn",$chara_name);
         $stmt->bindparam(":ch",$channel);
