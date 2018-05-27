@@ -26,7 +26,7 @@ if($showall == 1){
 	$stmt->execute();
 	$result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
 	
-	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE is_ptl=0 AND mtime > (now() - INTERVAL 90 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
 	$stmt->execute();
 	$result3 = $stmt->fetchall(PDO::FETCH_ASSOC);
 	
@@ -44,7 +44,7 @@ if($showall == 1){
 	$stmt->execute();
 	$result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
 	
-	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=0 AND mtime > (now() - INTERVAL 90 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
 	$stmt->bindparam(":exc",$EXCLUDE_CLAN);
 	$stmt->execute();
 	$result3 = $stmt->fetchall(PDO::FETCH_ASSOC);
