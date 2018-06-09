@@ -6,6 +6,7 @@ $DB_NAME = $ini_array['DB_NAME'];
 $DB_USER = $ini_array['DB_USER'];
 $DB_PASSWORD = $ini_array['DB_PASSWORD'];
 $EXCLUDE_CLAN = $ini_array['EXCLUDE_CLAN'];
+$EXCLUDE_CLAN2 = $ini_array['EXCLUDE_CLAN2'];
 
 $options =array();// array(PDO::MYSQL_ATTR_INIT_COMMAND=>"SET CHARACTER SET 'utf8'");
 
@@ -34,23 +35,27 @@ if($showall == 1){
 	$stmt->execute();
 	$result4 = $stmt->fetchall(PDO::FETCH_ASSOC);
 } else {
-	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) AND level > 0 AND ident!='ACER1' ORDER BY  mtime DESC;");
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND clan_name!=:exc2 AND is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) AND level > 0 AND ident!='ACER1' ORDER BY  mtime DESC;");
 	$stmt->bindparam(":exc",$EXCLUDE_CLAN);
+	$stmt->bindparam(":exc2",$EXCLUDE_CLAN2);
 	$stmt->execute();
 	$result = $stmt->fetchall(PDO::FETCH_ASSOC);
 	
-	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=1 AND mtime > (now() - INTERVAL 90 minute ) AND level > 0 AND ident!='ACER1' ORDER BY  mtime DESC;");
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND clan_name!=:exc2 AND is_ptl=1 AND mtime > (now() - INTERVAL 90 minute ) AND level > 0 AND ident!='ACER1' ORDER BY  mtime DESC;");
 	$stmt->bindparam(":exc",$EXCLUDE_CLAN);
+	$stmt->bindparam(":exc2",$EXCLUDE_CLAN2);
 	$stmt->execute();
 	$result2 = $stmt->fetchall(PDO::FETCH_ASSOC);
 	
-	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND clan_name!=:exc2 AND is_ptl=0 AND mtime > (now() - INTERVAL 30 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
 	$stmt->bindparam(":exc",$EXCLUDE_CLAN);
+	$stmt->bindparam(":exc2",$EXCLUDE_CLAN2);
 	$stmt->execute();
 	$result3 = $stmt->fetchall(PDO::FETCH_ASSOC);
 	
-	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND is_ptl=1 AND mtime > (now() - INTERVAL 90 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
+	$stmt = $dbh->prepare("SELECT * FROM enemy_party WHERE clan_name!=:exc AND clan_name!=:exc2 AND is_ptl=1 AND mtime > (now() - INTERVAL 90 minute ) AND level > 0 AND ident='ACER1' ORDER BY  mtime DESC;");
 	$stmt->bindparam(":exc",$EXCLUDE_CLAN);
+	$stmt->bindparam(":exc2",$EXCLUDE_CLAN2);
 	$stmt->execute();
 	$result4 = $stmt->fetchall(PDO::FETCH_ASSOC);
 }
