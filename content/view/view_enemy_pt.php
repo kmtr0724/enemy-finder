@@ -15,6 +15,7 @@ if(isset($_GET['showall'])){
 	$showall=$_GET['showall'];
 }
 
+$showall = 0;
 
 $dbh = new PDO('mysql:host='.$DB_HOST.';dbname='.$DB_NAME, $DB_USER, $DB_PASSWORD, $options);
 if($showall == 1){
