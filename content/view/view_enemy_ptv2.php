@@ -65,7 +65,7 @@ if($showall == 1){
 $class="";
 
 ?>
-<h1>北風の高原でPTに所属している敵対一覧</h1>
+<h1>象牙の自治区でPTに所属している敵対一覧</h1>
 <table>
 <tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>ch</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>滞在(分)</th><th>死亡時刻</th><th>コメント</th></tr>
 <?php foreach($result as $line):?>
@@ -86,7 +86,7 @@ $class="";
 
 <hr>
 
-<h1>北風の高原でPTに所属していない敵対一覧</h1>
+<h1>象牙の自治区でPTに所属していない敵対一覧</h1>
 <table>
 <tr><th>操作</th><th>血盟</th><th>キャラ名</th><th>ch</th><th>レベル</th><th>戦闘力</th><th>確認時刻</th><th>滞在(分)</th><th>死亡時刻</th><th>コメント</th></tr>
 <?php foreach($result2 as $line):?>
